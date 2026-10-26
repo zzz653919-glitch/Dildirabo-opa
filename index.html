@@ -256,7 +256,7 @@ h1,h2{font-family:var(--serif); font-weight:600; margin:0}
   <h2 class="scene-title">Sizga kichik bir salom bor&nbsp;💌</h2>
   <div class="video-frame">
     <div class="video-frame-inner">
-      <video id="greeting-video" playsinline muted autoplay loop preload="auto"></video>
+      <video id="greeting-video" playsinline loop preload="auto"></video>
       <p class="video-error" id="video-error" hidden>Video yuklanmadi 😔 — pastdagi tugma orqali rasmlarga o'tishingiz mumkin.</p>
     </div>
   </div>
@@ -469,10 +469,14 @@ function updateSoundIcon() {
 // to'xtatish/davom ettirish tugmasi shart emas.
 function startVideo() {
   videoError.hidden = true;
-  video.muted = true;
-  updateSoundIcon();
   clearTimeout(videoWatchdog);
-  video.play().catch(() => { /* keyingi urinish watchdog orqali bo'ladi */ });
+  // "Sehrni ochish" bosilgani foydalanuvchi harakati hisoblanadi, shuning uchun
+  // video ovozli boshlanadi. Brauzer rad etsa, ovozsiz boshlanadi.
+  video.muted = false;
+  video.play().catch(() => {
+    video.muted = true;
+    video.play().catch(() => {});
+  });
   // Agar video bir necha soniyadan keyin ham yuklanmasa yoki boshlanmasa,
   // sezdirmasdan avtomatik qayta urinamiz — foydalanuvchiga hech narsa
   // bosish shart emas.
