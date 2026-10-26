@@ -116,11 +116,6 @@ h1,h2{font-family:var(--serif); font-weight:600; margin:0}
 }
 .video-frame-inner video{width:100%; height:100%; object-fit:contain; background:#000; display:block}
 .video-error{position:absolute; inset:auto 12px 12px 12px; margin:0; font-size:.85rem; color:#ffd9d9; text-align:center}
-.sound-toggle{
-  position:absolute; z-index:3; top:12px; right:12px; width:40px; height:40px; border-radius:50%;
-  border:1px solid var(--glass-brd); background:rgba(10,4,24,.55); color:#fff; font-size:1.1rem;
-  cursor:pointer; display:grid; place-items:center; backdrop-filter:blur(4px);
-}
 
 /* ================= 3. GALLERY ================= */
 .gallery-stage{position:relative; width:min(92vw,460px)}
@@ -262,7 +257,6 @@ h1,h2{font-family:var(--serif); font-weight:600; margin:0}
   <div class="video-frame">
     <div class="video-frame-inner">
       <video id="greeting-video" playsinline muted autoplay loop preload="auto"></video>
-      <button class="sound-toggle" id="btn-sound" aria-label="Ovozni yoqish" type="button">🔇</button>
       <p class="video-error" id="video-error" hidden>Video yuklanmadi 😔 — pastdagi tugma orqali rasmlarga o'tishingiz mumkin.</p>
     </div>
   </div>
